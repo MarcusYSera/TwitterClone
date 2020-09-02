@@ -2,6 +2,8 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import axios from 'axios';
 
+// console.log(process.env.REACT_APP_BEARER_TOKEN);
+
 class App extends React.Component {
   // async componentDidMount() {
   //   try {
@@ -17,10 +19,10 @@ class App extends React.Component {
     console.log(e.user);
     const config = {
       method: 'get',
-      url: `https://api.twitter.com/labs/2/users/by/username/${e.user}?expansions=pinned_tweet_id`,
+      // url: `https://api.twitter.com/labs/2/users/by/username/${e.user}?expansions=pinned_tweet_id`,
+      url: `https://api.twitter.com/labs/2/users/by/username/${e.user}`,
       headers: {
-        Authorization:
-          'Bearer AAAAAAAAAAAAAAAAAAAAAJohHQEAAAAAtFSv1c9bQguXmRTdyDXQLv1gfpE%3DcVtZrQvx6iEsO6AuATcGajsTXtm9lMk3rgBHuPCuI6ZaY15uVr',
+        Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
         // Cookie:
         //   'personalization_id="v1_dLCv7GSVPP3SbawrnPi0+w=="; guest_id=v1%3A159899956972344374',
       },
