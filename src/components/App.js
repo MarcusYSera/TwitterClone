@@ -1,20 +1,43 @@
 import React from 'react';
-import axios from 'axios';
+import { Form, Field } from 'react-final-form';
+// import axios from 'axios';
 
-const TwitterDB = () => {
-  const returnCall = 'hello';
-  axios({ method: 'get', url: '' });
+class App extends React.Component {
+  async componentDidMount() {
+    try {
+      const res = await window.twttr.ready;
+      return res;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 
-  return <div>{returnCall}</div>;
-};
+  onSubmit = (e) => {
+    console.log(e.user);
+  };
 
-const App = () => {
-  return (
-    <div className="ui center aligned container">
-      <h1>hello world</h1>
-      {TwitterDB()}
-    </div>
-  );
-};
+  render() {
+    return (
+      <div>
+        <Form
+          onSubmit={this.onSubmit}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <Field
+                component="input"
+                name="user"
+                placeholder="Search for User here"
+              />
+              <button type="submit">submit</button>
+            </form>
+          )}
+        />
+        <h1>hello world</h1>
+        {this.displayTweeet}
+      </div>
+    );
+  }
+}
 
 export default App;
