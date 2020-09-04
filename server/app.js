@@ -12,6 +12,8 @@ app.use(cors({
 })
 );
 
+app.use(bodyParser.json());
+
 const config = {
   method: 'get',
   // url: `https://api.twitter.com/labs/2/users/by/username/${e.user}?expansions=pinned_tweet_id`,
