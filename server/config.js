@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-module.exports={
+module.exports = {
   port: process.env.SERVER,
   twitterApiKey: process.env.API_KEY,
   twitterApiKeySecret: process.env.API_KEY_SECRET,

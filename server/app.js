@@ -2,7 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const Twitter = require('twitter');
-const { twitterApiKey, twitterApiKeySecret, twitterBearerToken, twitterAccessToken, twitterAccessTokenSecret } = require('./config')
+const {
+  twitterApiKey,
+  twitterApiKeySecret,
+  twitterBearerToken,
+  twitterAccessToken,
+  twitterAccessTokenSecret,
+} = require('./config');
 
 // const{ twitterBearerToken } = require('./config');
 
@@ -15,25 +21,25 @@ const client = new Twitter({
   access_token_secret: `${twitterAccessTokenSecret}`,
 });
 
-const params = {screen_name: 'nodejs'};
-client.get('statuses/user_timeline', params, (error, tweets, response)=>{
-  if(!error){
+const params = { screen_name: 'nodejs' };
+client.get('statuses/user_timeline', params, (error, tweets, response) => {
+  if (!error) {
     console.log(tweets);
   }
-  if(error){
+  if (error) {
     console.log(error);
   }
 });
 
-app.use(cors({
-  origin: "http://localhost:3000",
-  methods: "GET",
-  optionsSuccessStatus: 200
-})
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET',
+    optionsSuccessStatus: 200,
+  })
 );
 
 app.use(bodyParser.json());
-
 
 // const config = {
 //   method: 'get',
@@ -54,8 +60,8 @@ app.use(bodyParser.json());
 //     console.log(error);
 //   });
 
-app.use((err, req, res, next)=>{
-  res.status(422).send({error: err.message});
+app.use((err, req, res, next) => {
+  res.status(422).send({ error: err.message });
 });
 
 module.exports = app;
